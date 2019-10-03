@@ -1,11 +1,13 @@
 * {
 	font-family: "Helvetica Neue Bold", Georgia, serif;
 	font-weight: 700;
+
 }
 
 body {
 	background-color: black;
 }
+
 
 h1 {
 	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, serif;
@@ -26,8 +28,9 @@ h2 {
 h3 {
 	font-size: 18px;
 	line-height: 23px;
-	font-style: italic;
-}
+	font-style:italic;
+	
+}	
  p {
  	font-family: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
  	font-size: 16px;
@@ -48,7 +51,7 @@ h3 {
  	font-size: 14px;
  	font-style: italic;
  	line-height: 17px;
- 	text-decoration-color: white;
+ 	color: silver;
  }
 
  
@@ -130,15 +133,13 @@ h3 {
 
 }
  .restaurant-list {
- 	background-color: #F0F0F;
- 	color: white;
+ 	color: silver;
  	padding: 20px;
  }
  .restaurant-list:hover {
- 	background-color: orange;
+ 	background-color: yellow;
  	padding: 20px;
 }
-
 
 
 .menu-item {
@@ -149,6 +150,7 @@ h3 {
 }
 .menu-price {
 	font-weight: 700;
+	color: green;
 }
 .creator {
 	padding-right: 20px;
