@@ -35,7 +35,7 @@ def showLogin():
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
-@app.route('/gconnect', methods=['POST'])
+@app.route('/gconnect/', methods=['POST'])
 def gconnect():
     # Validate state token
     if request.args.get('state') != login_session['state']:
@@ -83,7 +83,7 @@ def gconnect():
         print "Token's client ID does not match app's."
         response.headers['Content-Type'] = 'application/json'
         return response
-
+        #check to see if user is already logged in
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
@@ -152,7 +152,7 @@ def getUserID(email):
 
 
 # DISCONNECT - Revoke a current user's token and reset their login_session
-@app.route('/gdisconnect')
+@app.route('/gdisconnect/')
 def gdisconnect():
         # Only disconnect a connected user.
     
