@@ -11,10 +11,12 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-1 padding-top">
-			<form action="#" method = "post">
+			<form action="{{ url_for('editMenuItem', restaurant_id=restaurant_id, menu_id=i.id)}}" method = "post">
 				<div class="form-group">
 					<label for="name">Name:</label>
 					<input type ="text" maxlength="100" class="form-control" name="name" value="{{item.name }}">
+
+					<input type="submit" value="Edit">
 
 					<label for="description">Description:</label>
 					<textarea class="form-control" maxlength="250" rows="3" name="description">{{item.description}}</textarea>
