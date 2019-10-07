@@ -122,7 +122,9 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius:" 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;">'
+    output += 'style = width: 300px;height: 300px;\
+            border-radius:150px; -webkit-border-radius: 150px;\
+            - moz - border - radius: 150px;>'
     flash("you are now logged in as %s" % login_session['username'])
     print("done!")
     return output
@@ -256,7 +258,7 @@ def editRestaurant(restaurant_id):
             You are not authorized to edit restaurants in this catagory.\
             Please create your own restaurant in order to edit them.');}\
             </script><body onload='myFunction()'>"
-    
+
     if request.method == 'POST':
         if request.form['name']:
             editedRestaurant.name = request.form['name']
@@ -275,6 +277,12 @@ def deleteRestaurant(restaurant_id):
         return redirect('/login')
     restaurantToDelete = session.query(
         Restaurant).filter_by(id=restaurant_id).one()
+    if login_session['user_id'] != restaurantToDelete.user_id:
+        return "<script>function myFunction(){alert('\
+            You are not authorized to delete restaurants in this catagory.\
+            Please create your own restaurant in order to delete them.');}\
+            </script><body onload='myFunction()'>"
+
     if request.method == 'POST':
         session.delete(restaurantToDelete)
         flash('%s Successfully Deleted' % restaurantToDelete.name)
@@ -298,6 +306,7 @@ def showMenu(restaurant_id):
     creator = getUserInfo(restaurant.user_id)
     items = session.query(MenuItem).filter_by(
         restaurant_id=restaurant_id).all()
+    
     if 'username' not in login_session or creator.id != login_session['user_id']:
         return render_template(
             'publicmenu.html',
