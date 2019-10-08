@@ -122,7 +122,7 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += 'style = width: 300px;height: 300px;\
+    output += '"style = width: 300px;height: 300px;\
             border-radius:150px; -webkit-border-radius: 150px;\
             - moz - border - radius: 150px;>'
     flash("you are now logged in as %s" % login_session['username'])
@@ -402,7 +402,10 @@ def deleteMenuItem(restaurant_id, menu_id):
         flash('Menu Item Successfully Deleted')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('deleteMenuItem.html', item=itemToDelete)
+        return render_template('deleteMenuItem.html',
+            item=itemToDelete,
+            menu_id=menu_id,
+            restaurant_id=restaurant_id)
 
 
 if __name__ == '__main__':
