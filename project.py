@@ -252,7 +252,8 @@ def newRestaurant():
 def editRestaurant(restaurant_id):
     if 'username' not in login_session:
         return redirect('/login')
-    editedRestaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    editedRestaurant = session.query(
+        Restaurant).filter_by(id=restaurant_id).one()
     if login_session['user_id'] != editedRestaurant.user_id:
         return "<script>function myFunction(){alert('\
             You are not authorized to edit restaurants in this catagory.\
@@ -306,13 +307,14 @@ def showMenu(restaurant_id):
     creator = getUserInfo(restaurant.user_id)
     items = session.query(MenuItem).filter_by(
         restaurant_id=restaurant_id).all()
-    
-    if 'username' not in login_session or creator.id != login_session['user_id']:
-        return render_template(
-            'publicmenu.html',
-            items=items,
-            restaurant=restaurant,
-            creator=creator)
+
+    if ('username' not in login_session or
+            creator.id != login_session['user_id']):
+            return render_template(
+                'publicmenu.html',
+                items=items,
+                restaurant=restaurant,
+                creator=creator)
     else:
         return render_template(
             'menu.html',
@@ -403,9 +405,9 @@ def deleteMenuItem(restaurant_id, menu_id):
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
         return render_template('deleteMenuItem.html',
-            item=itemToDelete,
-            menu_id=menu_id,
-            restaurant_id=restaurant_id)
+                               item=itemToDelete,
+                               menu_id=menu_id,
+                               restaurant_id=restaurant_id)
 
 
 if __name__ == '__main__':
